@@ -15,8 +15,6 @@ export class CounterVm implements ViewModel {
 		this.context = context
 		this.props = props
 
-		// аналог autorun из MobX — уничтожается вместе с компонентом,
-		// массив autorunDisposers больше не нужен;
 		// запись в log оборачиваем в untrack: push читает log.length,
 		// без untrack эффект зависел бы от собственной записи и зациклился
 		$effect(() => {
