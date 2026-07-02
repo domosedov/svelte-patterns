@@ -1,8 +1,9 @@
 <script lang="ts">
+	import VmProvider from '$lib/vm/VmProvider.svelte'
 	import { AppContext, setVmContext } from './app-context.svelte'
 	import Counter from './Counter.svelte'
 
-	const app = setVmContext(new AppContext())
+	const app = new AppContext()
 
 	let step = $state(1)
 	let visible = $state(true)
@@ -23,9 +24,11 @@
 		</label>
 	</div>
 
-	{#if visible}
-		<Counter {step} />
-	{/if}
+	<VmProvider context={app} set={setVmContext}>
+		{#if visible}
+			<Counter {step} />
+		{/if}
+	</VmProvider>
 
 	<div>
 		<h2 class="font-bold">Лог (из контекста)</h2>
